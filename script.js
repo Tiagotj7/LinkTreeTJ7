@@ -1,57 +1,128 @@
-particlesJS("particles-js",{
+// ==========================
+// PARTICLES
+// ==========================
 
-particles:{
+if (typeof particlesJS !== "undefined") {
 
-number:{value:60},
+    particlesJS("particles-js", {
 
-color:{value:"#3b82f6"},
+        particles: {
 
-shape:{type:"circle"},
+            number: {
+                value: 60,
+                density: {
+                    enable: true,
+                    value_area: 900
+                }
+            },
 
-opacity:{value:.4},
+            color: {
+                value: "#3b82f6"
+            },
 
-size:{value:3},
+            shape: {
+                type: "circle"
+            },
 
-move:{
+            opacity: {
+                value: 0.35
+            },
 
-enable:true,
+            size: {
+                value: 3,
+                random: true
+            },
 
-speed:1
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#3b82f6",
+                opacity: 0.15,
+                width: 1
+            },
 
-},
+            move: {
+                enable: true,
+                speed: 1,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out"
+            }
 
-line_linked:{
+        },
 
-enable:true,
+        interactivity: {
 
-distance:160,
+            detect_on: "canvas",
 
-color:"#3b82f6",
+            events: {
 
-opacity:.15
+                onhover: {
+                    enable: true,
+                    mode: "grab"
+                },
+
+                onclick: {
+                    enable: true,
+                    mode: "push"
+                },
+
+                resize: true
+
+            },
+
+            modes: {
+
+                grab: {
+                    distance: 140,
+                    line_linked: {
+                        opacity: 0.4
+                    }
+                },
+
+                push: {
+                    particles_nb: 3
+                }
+
+            }
+
+        },
+
+        retina_detect: true
+
+    });
 
 }
 
-}
+// ==========================
+// EFEITO DE BRILHO NOS BOTÕES
+// ==========================
+
+const buttons = document.querySelectorAll(".links a");
+
+buttons.forEach((button) => {
+
+    button.addEventListener("mousemove", (event) => {
+
+        const rect = button.getBoundingClientRect();
+
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        button.style.setProperty("--x", `${x}px`);
+        button.style.setProperty("--y", `${y}px`);
+
+    });
 
 });
 
-document.querySelectorAll(".links a").forEach(btn=>{
+// ==========================
+// ANIMAÇÃO DE ENTRADA
+// ==========================
 
-btn.addEventListener("mousemove",(e)=>{
+window.addEventListener("load", () => {
 
-const x=e.offsetX;
-
-const y=e.offsetY;
-
-btn.style.background=`radial-gradient(circle at ${x}px ${y}px,rgba(59,130,246,.25),rgba(17,24,39,.8))`;
-
-});
-
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.background="rgba(17,24,39,.6)";
-
-});
+    document.body.classList.add("loaded");
 
 });
